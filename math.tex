@@ -1,0 +1,87 @@
+\documentclass[
+  UTF8, openany, 10pt,
+  a4paper, oneside, fontset=none
+]{ctexbook}
+
+\usepackage{color, extsizes, float, fancyhdr,
+  fontspec, footmisc, geometry, graphicx, hyperref,
+  lastpage, makeidx, tikz, wasysym, xcolor, xeCJK
+}
+\makeindex
+
+%%% Infos
+\title{{\Huge{\textbf{数学}}}}
+\author{Cierra\_Runis}
+\date{\today}
+
+%%% Fonts
+% English
+\setmainfont{TimesNewRoman}[
+  Path           = ./fonts/TimesNewRoman/,
+  Extension      = .ttf,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]
+% Code
+\setmonofont{CascadiaCode}[
+  Path           = ./fonts/CascadiaCode/,
+  Extension      = .ttf
+]
+% Chinese
+\setCJKmainfont{SourceHanSerif}[
+  Path           = ./fonts/SourceHanSerif/,
+  Extension      = .otf,
+  BoldFont       = *-Bold,
+  ItalicFont     = *,
+  BoldItalicFont = *-Bold
+]
+
+%%% Emoji
+\newfontfamily\Emoji{seguiemj.ttf}
+\newenvironment{emoji}{\selectfont\Emoji}{}
+
+%%% Links
+\hypersetup{
+  pdftitle       = {数学},
+  pdfcreator     = {Cierra\_Runis},
+  colorlinks     = true,
+  linkcolor      = orange,
+  urlcolor       = orange,
+  citecolor      = orange,
+}
+
+% 章节格式
+\ctexset{
+  space          = true,
+  section        = {
+    name         = {第, 节},
+    number       = {\chinese{section}}
+  },
+}
+
+% 文档格式
+\linespread{1.5}
+
+% 页眉页脚格式
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\hyperlink{footlinkcontent}{\thepage}}
+
+% 文档开端
+\begin{document}
+
+  \frontmatter
+  \maketitle
+  \input{chapter/preface.tex}
+
+  \mainmatter
+  \hypertarget{footlinkcontent}{}
+  \tableofcontents
+  \input{chapter/part.1.基础知识.chapter.1.整数.tex}
+
+  \backmatter
+  \input{chapter/epilogue.tex}
+
+\end{document}
