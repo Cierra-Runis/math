@@ -1,8 +1,50 @@
 \chapter{自然数}
 
-自我们出生就一直和
+自然数集 $\mathbb{N}$ 是我们接触最早的数集，但就是这样一个“性质简单”的数集，我们也能从中发现一些有趣的东西。
 
 \section{认识自然数}
+
+自我们出生就一直和数字打交道：人有几根手指？河里有几只鸭子？朴素的我们掰着手指记数：0、1、2、3……10，至此我们会使用 0 到 10 的数字来计数了。
+
+好像有什么不对劲，0 是自然数吗？
+
+不同的书籍、领域给出的答案是不一样的，就根据 皮亚诺公理\footnote{参见 \href{https://zh.wikipedia.org/wiki/\%E7\%9A\%AE\%E4\%BA\%9A\%E8\%AF\%BA\%E5\%85\%AC\%E7\%90\%86}{维基百科}} 得出的结论，答案是肯定的。
+
+这五条公理的内容如下：
+
+\begin{itemize}
+  \item $0$ 是自然数
+  \item 每个自然数 $a$ 有且仅有一个后继数 $a'$ 为自然数
+  \item 对自然数 $b$、$c$，当且仅当 $b' = c'$ 时有 $b = c$
+  \item $0$ 不是任何自然数的后继数
+  \item 任意有关自然数的命题，若其对自然数 $0$ 成立，且假定它对自然数 $a$ 为真时，可证其对 $a'$ 也成立，那么命题对所有自然数成立
+\end{itemize}
+
+\section{比较大小}
+
+给出自然数 $a$、$b$，现在的我们看到不等式 $a > b$ 时，很容易就得到 $a - b > 0$，但让我们回忆一下我们当初是怎么进行比较的：
+
+\begin{center}
+  \begin{tikzpicture}
+    \foreach \n/\t in
+    {0/1,1/2,2/3,3/4}
+    {\node[circle,fill=lightgray,draw]
+    at (\n,1.2) {$\t$};}
+
+    \foreach \n in
+    {0,1,2}
+    {\node at (\n,0.6) {|};}
+
+    \foreach \n/\t in
+    {0/1,1/2,2/3}
+    {\node[circle,fill=lightgray,draw]
+    at (\n,0) {$\t$};}
+  \end{tikzpicture}
+\end{center}
+
+像这样一一比对，直到一方比另一方多或相等。
+
+\section{进制}
 
 1.数一数
 
