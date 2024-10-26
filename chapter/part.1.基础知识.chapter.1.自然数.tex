@@ -20,9 +20,27 @@
   \item 任意有关自然数的命题，若其对自然数 $0$ 成立，且假定它对自然数 $a$ 为真时，可证其对 $a'$ 也成立，那么命题对所有自然数成立
 \end{itemize}
 
+个人认为把 0 认作自然数的好：离散数学中有单位元（幺元）的概念，若 $0 \notin \mathbb{N}$，则定义在集合 $\mathbb{N}$ 上的二元运算 $+$ 就没有单位元了，让其失去这样的性质就失去了数学的美感。
+
+\subsection{负数}
+
+\subsection{奇数}
+
+\subsection{偶数}
+
+\subsection{因数}
+
+\subsection{倍数}
+
+\subsection{倒数}
+
+\subsection{质数}
+
+\subsection{合数}
+
 \section{比较大小}
 
-给出自然数 $a$、$b$，现在的我们看到不等式 $a > b$ 时，很容易就得到 $a - b > 0$，但让我们回忆一下我们当初是怎么进行比较的：
+给出自然数 $a$、$b$，现在的我们看到不等式 $a > b$ 时，很容易就得到 $a - b > 0$，未免陷入到了代数的桎梏中——让我们回忆一下我们当初是怎么进行比较的：
 
 \begin{center}
   \begin{tikzpicture}
@@ -42,15 +60,56 @@
   \end{tikzpicture}
 \end{center}
 
-像这样一一比对，直到一方比另一方多或相等。
+像这样 \strong{一一对应}，直到一方比另一方多或相等。
+
+为什么在这讲如此简单的东西呢？我们以一个数学问题切入感受一下：
+
+Q：正奇数集 $O = \{1, 3, \cdots\}$ 与正偶数集 $E = \{2, 4, \cdots\}$ 哪个集合的元素个数（势）更大？
+
+A: 存在函数 $f: O \to E, f(x) = x + 1$ 为双射函数，则 $O, E$ 同势
+
+而双射的定义如下：
+
+若 $f: X \to Y$ 有 $\forall x \in X$ 存在唯一的 $y$ 与 $x$ 对应，且 $\forall y \in Y$ 存在唯一的 $x$ 与 $y$ 对应，则称 $f$ 为双射函数。换句话说，如果 $f$ 为两集合间的 \strong{一一对应} 关系，则 $f$ 是双射的。
+
+在此也请读者们思考：
+
+\begin{itemize}
+  \item 上文中的 $O \cup E$ 与 $O, E$ 是否同势？若是请给出函数 $f$，否则给出理由。
+  \item  集合 $A = \{x | 0 < x < 1, x \in \mathbb{R}\}$ 与集合 $\mathbb{R}$ 是否同势？若是请给出函数 $f$，否则给出理由。
+\end{itemize}
 
 \section{进制}
 
-1.数一数
+\section{四则运算}
 
-2.比一比：“同样多”、“多”、“少”以及“长”、“短”、“高”、“矮”。
+\subsection{加法}
 
-3. 1～5的认识和加减法：1～5的认识（基数、读写、数序、比大小、序数、组成）1～5的加减法（加减法含义、计算）0的认识（表示起点、没有）和加减法。
+\subsection{减法}
+
+\subsection{乘法}
+
+\subsection{除法}
+
+\subsubsection{取余}
+
+\section{平面图形}
+
+\section{立体图形}
+
+\section{统计}
+
+\subsection{平均数}
+
+\subsection{最值}
+
+\section{对称}
+
+\section{角}
+
+\section{坐标}
+
+\section{鸡兔同笼}
 
 4.认识物体和平面图形：长方体、正方体、圆柱和球等立体图形与长方形、正方形、三角形和圆等平面图形。
 
