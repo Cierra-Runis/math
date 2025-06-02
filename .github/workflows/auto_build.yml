@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - name: List root directory files
+        run: ls -al
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
@@ -17,3 +19,5 @@ jobs:
         with:
           name: PDF
           path: math.pdf
+      - name: List root directory files
+        run: ls -al
