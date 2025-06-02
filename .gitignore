@@ -9,6 +9,7 @@
 *.thm
 *.bbl
 *.fls
+*.idx
 *.fdb_latexmk
 *.synctex(busy)
 

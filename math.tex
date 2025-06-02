@@ -2,17 +2,24 @@
   UTF8, openany, 12pt,
   a4paper, twoside, fontset=none
 ]{ctexbook}
-
 \usepackage{amsmath, amssymb, amsfonts, array, color, enumitem, extsizes, esint,
-  float, fancyhdr, fontspec, footmisc, geometry, ntheorem,
+  float, fancyhdr, fontspec, footmisc, geometry,
   graphicx, gbt7714, lastpage, makeidx, mathtools, tikz, xcolor, xeCJK
 }
-\usepackage{hyperref}
+\usepackage[CJKbookmarks=true]{hyperref}
+\usepackage{cleveref}
+\usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 \usepackage[labelsep=quad]{caption}
 \usetikzlibrary{intersections,calc,angles,quotes}
 
+\def\creator{Cierra\_Runis}
+\def\version{0.0.1}
+\def\latestdate{{\the\year} 年 {\the\month} 月}
+
+\definecolor{purple}{HTML}{C678DD}
+\def\linespreadsize{1.35}
+
 \makeindex
-\bibliographystyle{gbt7714-numerical}
 \graphicspath{{figures/}}
 
 %%% Fonts
@@ -32,7 +39,22 @@
 
 \geometry{a4paper,left=3.67cm,right=2.67cm,top=2.54cm,bottom=2.54cm,head=1.5cm,foot=1.75cm}
 
-\definecolor{purple}{HTML}{C678DD}
+
+\ctexset{
+  chapter = {
+    name = {第,章}, % 章节名称
+    number = \arabic{chapter}, % 章节编号格式
+  }
+}
+\xeCJKsetup{CJKmath=true}
+
+\crefformat{equation}{#2式~#1#3}
+\crefformat{figure}{#2图~#1#3}
+\crefformat{table}{#2表~#1#3}
+\crefformat{chapter}{#2第~#1~章#3}
+\crefformat{section}{#2第~#1~节#3}
+\crefformat{subsection}{#2第~#1~节#3}
+\crefformat{subsubsection}{#2第~#1~节#3}
 
 \newcommand\omicron{o}
 \everymath{\displaystyle}
@@ -46,64 +68,28 @@
   \newtheorem{definition}{定义}     % 引入新术语、新概念
   \newtheorem{problem}{练习}        % 练习题
   \newtheorem{answer}{答案}         % 练习题答案
-  \newtheorem{example}{例}         % 在已经给出定义或定理后, 给出具体的例子来说明或应用该定义或定理
 }
 {
   \theoremstyle{nonumberplain}
+  \theoremseparator{\quad}
+  \newtheorem{example}{例}         % 在已经给出定义或定理后, 给出具体的例子来说明或应用该定义或定理
   \newtheorem{question}{问}        % 提出问题或疑问, 通常用于引导思考或讨论
   \newtheorem{solution}{解}        % 通用的解答环境
+}
+{
+  \theoremstyle{nonumberplain}
+  \theoremsymbol{Q.E.D.}  % 在证明环境末尾加上一个证毕符号
   \newtheorem{proof}{证}           % 证明环境
 }
 
-
-
-% % 定理编号全局连续
-% \theoremstyle{definition}
-% \newtheorem{theorem}{定理}        % 按章编号，例如 1.1, 1.2
-% \newtheorem{lemma}{引理}
-% \newtheorem{corollary}{推论}
-% \newtheorem{proposition}{命题}
-% \newtheorem{conjecture}{猜想}
-% \newtheorem{definition}{定义}
-% \newtheorem{example}{例}
-
-% \newtheoremstyle{no-dots}% 样式名
-%   {0pt}   % 上方间距
-%   {0pt}   % 下方间距
-%   {\normalfont}  % 正文体
-%   {}      % 缩进量
-%   {\bfseries} % 头字体（加粗）
-%   {}      % 定理头后的标点（留空）
-%   {.5em}  % 定理头和正文之间的空隙
-%   {\thmname{#1}} % 自定义标题格式（不加编号）
-
-% % 练习、答案全局计数器
-% \newcounter{problemcounter}
-% \newcounter{answercounter}
-% \newtheorem{problem}[problemcounter]{练习}
-% \newtheorem{answer}[answercounter]{答案}
-% \providecommand*{\problemcounterautorefname}{练习}
-% \providecommand*{\answercounterautorefname}{答案}
-
-% % 不需要编号
-% \theoremstyle{no-dots}
-% \newtheorem*{question}{问}
-% \newtheorem*{solution}{解}
-% \makeatletter
-% \renewcommand{\proofname}{证}
-% \renewenvironment{proof}[1][\bfseries{\proofname}]{%
-%   \par\pushQED{\qed}%
-%   \normalfont \topsep6\p@\@plus6\p@\relax
-%   \trivlist
-%   \item[\hskip\labelsep#1\@addpunct{\quad}]% <-- 这里清除默认句号
-% }{%
-%   \popQED\endtrivlist\@endpefalse
-% }
-% % \renewenvironment{solution}{%
-% %   \par\textbf{解}\quad
-% %   \ignorespaces
-% % }{\par}
-% \makeatother
+\crefformat{theorem}{#2定理~#1#3}
+\crefformat{lemma}{#2引理~#1#3}
+\crefformat{corollary}{#2推论~#1#3}
+\crefformat{proposition}{#2命题~#1#3}
+\crefformat{conjecture}{#2猜想~#1#3}
+\crefformat{definition}{#2定义~#1#3}
+\crefformat{problem}{#2练习~#1#3}
+\crefformat{answer}{#2答案~#1#3}
 
 %%% Links
 \hypersetup{
@@ -115,13 +101,6 @@
   citecolor      = purple,
 }
 
-\def\figureautorefname{图}
-\def\tableautorefname{表}
-\def\chapterautorefname~#1\null{第~#1~章\null}
-\def\sectionautorefname~#1\null{#1~小节\null}
-\def\subsectionautorefname~#1\null{#1~小节\null}
-\def\subsubsectionautorefname~#1\null{#1~小节\null}
-
 % Setup table and figure captions
 \captionsetup[table]{labelfont=bf, textfont=bf}
 \captionsetup[figure]{labelfont=bf, textfont=bf}
@@ -130,14 +109,6 @@
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 
-\ctexset{
-  chapter = {
-    name = {第,章}, % 章节名称
-    number = \arabic{chapter}, % 章节编号格式
-  }
-}
-\xeCJKsetup{CJKmath=true}
-\def\linespreadsize{1.35}
 \linespread{\linespreadsize}
 
 % 页眉页脚格式
@@ -147,9 +118,7 @@
 \fancyhead[RO]{\hyperref[toc]{\small\thepage}}
 \fancyhead[LE]{\hyperref[toc]{\small\thepage}}
 \fancypagestyle{plain}{
-  \fancyhf{}
-  \renewcommand{\headrulewidth}{0pt} % 页眉线宽
-  \renewcommand{\footrulewidth}{0pt} % 页脚线宽
+  \pagestyle{empty}
 }
 
 % 文档开端
@@ -160,7 +129,7 @@
 \frontmatter
 \pagenumbering{Roman}
 \input{chap/preface}
-\tableofcontents\label{toc}
+\tableofcontents \label{toc}
 
 \mainmatter
 \input{chap/chap.1.自然数}

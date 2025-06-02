@@ -12,6 +12,7 @@
     "**/*.synctex.gz": true,
     "**/*.thm": true,
     "**/*.toc": true,
+    "**/*.idx": true,
     "**/.DS_Store": true,
     "**/.git": true,
     "**/.hg": true,
