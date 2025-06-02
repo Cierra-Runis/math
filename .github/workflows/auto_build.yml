@@ -11,9 +11,9 @@ jobs:
         with:
           root_file: math.tex
           latexmk_use_xelatex: true
+          args: -synctex=1 -interaction=nonstopmode -file-line-error
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
           name: PDF
           path: math.pdf
-          args: -pdf -synctex=1 -interaction=nonstopmode -file-line-error
