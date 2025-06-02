@@ -1,28 +1,21 @@
 \documentclass[
-  UTF8, openany, 10pt,
-  a4paper, oneside, fontset=none
+  UTF8, openany, 12pt,
+  a4paper, twoside, fontset=none
 ]{ctexbook}
 
-\usepackage{amssymb, color, extsizes, float, fancyhdr,
-  fontspec, footmisc, geometry, graphicx, hyperref,
-  lastpage, makeidx, tikz, wasysym, xcolor, xeCJK
+\usepackage{amsmath, amssymb, amsfonts, array, color, enumitem, extsizes, esint,
+  float, fancyhdr, fontspec, footmisc, geometry, ntheorem,
+  graphicx, gbt7714, lastpage, makeidx, mathtools, tikz, xcolor, xeCJK
 }
-\makeindex
+\usepackage{hyperref}
+\usepackage[labelsep=quad]{caption}
+\usetikzlibrary{intersections,calc,angles,quotes}
 
-%%% Infos
-\title{{\Huge{\textbf{数学}}}}
-\author{Cierra\_Runis}
-\date{\today}
+\makeindex
+\bibliographystyle{gbt7714-numerical}
+\graphicspath{{figures/}}
 
 %%% Fonts
-% English
-\setmainfont{TimesNewRoman}[
-  Path           = ./fonts/TimesNewRoman/,
-  Extension      = .ttf,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic
-]
 % Code
 \setmonofont{CascadiaCode}[
   Path           = ./fonts/CascadiaCode/,
@@ -37,48 +30,154 @@
   BoldItalicFont = *-Bold
 ]
 
+\geometry{a4paper,left=3.67cm,right=2.67cm,top=2.54cm,bottom=2.54cm,head=1.5cm,foot=1.75cm}
+
+\definecolor{purple}{HTML}{C678DD}
+
+\newcommand\omicron{o}
+\everymath{\displaystyle}
+\theorembodyfont{\normalfont}
+{
+  \newtheorem{theorem}{定理}        % 主要结论, 需证明
+  \newtheorem{lemma}{引理}          % 辅助定理, 常用于证明定理的中间步骤
+  \newtheorem{corollary}{推论}      % 从定理直接得出的结果
+  \newtheorem{proposition}{命题}    % 一般性结论, 重要性略低于定理
+  \newtheorem{conjecture}{猜想}     % 尚未被证明的假设, 处于探索阶段
+  \newtheorem{definition}{定义}     % 引入新术语、新概念
+  \newtheorem{problem}{练习}        % 练习题
+  \newtheorem{answer}{答案}         % 练习题答案
+  \newtheorem{example}{例}         % 在已经给出定义或定理后, 给出具体的例子来说明或应用该定义或定理
+}
+{
+  \theoremstyle{nonumberplain}
+  \newtheorem{question}{问}        % 提出问题或疑问, 通常用于引导思考或讨论
+  \newtheorem{solution}{解}        % 通用的解答环境
+  \newtheorem{proof}{证}           % 证明环境
+}
+
+
+
+% % 定理编号全局连续
+% \theoremstyle{definition}
+% \newtheorem{theorem}{定理}        % 按章编号，例如 1.1, 1.2
+% \newtheorem{lemma}{引理}
+% \newtheorem{corollary}{推论}
+% \newtheorem{proposition}{命题}
+% \newtheorem{conjecture}{猜想}
+% \newtheorem{definition}{定义}
+% \newtheorem{example}{例}
+
+% \newtheoremstyle{no-dots}% 样式名
+%   {0pt}   % 上方间距
+%   {0pt}   % 下方间距
+%   {\normalfont}  % 正文体
+%   {}      % 缩进量
+%   {\bfseries} % 头字体（加粗）
+%   {}      % 定理头后的标点（留空）
+%   {.5em}  % 定理头和正文之间的空隙
+%   {\thmname{#1}} % 自定义标题格式（不加编号）
+
+% % 练习、答案全局计数器
+% \newcounter{problemcounter}
+% \newcounter{answercounter}
+% \newtheorem{problem}[problemcounter]{练习}
+% \newtheorem{answer}[answercounter]{答案}
+% \providecommand*{\problemcounterautorefname}{练习}
+% \providecommand*{\answercounterautorefname}{答案}
+
+% % 不需要编号
+% \theoremstyle{no-dots}
+% \newtheorem*{question}{问}
+% \newtheorem*{solution}{解}
+% \makeatletter
+% \renewcommand{\proofname}{证}
+% \renewenvironment{proof}[1][\bfseries{\proofname}]{%
+%   \par\pushQED{\qed}%
+%   \normalfont \topsep6\p@\@plus6\p@\relax
+%   \trivlist
+%   \item[\hskip\labelsep#1\@addpunct{\quad}]% <-- 这里清除默认句号
+% }{%
+%   \popQED\endtrivlist\@endpefalse
+% }
+% % \renewenvironment{solution}{%
+% %   \par\textbf{解}\quad
+% %   \ignorespaces
+% % }{\par}
+% \makeatother
+
 %%% Links
 \hypersetup{
   pdftitle       = {数学},
   pdfcreator     = {Cierra\_Runis},
   colorlinks     = true,
-  linkcolor      = orange,
-  urlcolor       = orange,
-  citecolor      = orange,
+  linkcolor      = purple,
+  urlcolor       = purple,
+  citecolor      = purple,
 }
 
-% 章节格式
+\def\figureautorefname{图}
+\def\tableautorefname{表}
+\def\chapterautorefname~#1\null{第~#1~章\null}
+\def\sectionautorefname~#1\null{#1~小节\null}
+\def\subsectionautorefname~#1\null{#1~小节\null}
+\def\subsubsectionautorefname~#1\null{#1~小节\null}
+
+% Setup table and figure captions
+\captionsetup[table]{labelfont=bf, textfont=bf}
+\captionsetup[figure]{labelfont=bf, textfont=bf}
+\DeclareCaptionFont{bf}{\small\bfseries}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+
+
 \ctexset{
-  space          = true,
-  section        = {
-    name         = {第, 节},
-    number       = {\chinese{section}}
-  },
+  chapter = {
+    name = {第,章}, % 章节名称
+    number = \arabic{chapter}, % 章节编号格式
+  }
 }
-
-% 文档格式
-\linespread{1.5}
+\xeCJKsetup{CJKmath=true}
+\def\linespreadsize{1.35}
+\linespread{\linespreadsize}
 
 % 页眉页脚格式
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\leftmark}
-\fancyfoot[C]{\hyperlink{footlinkcontent}{\thepage}}
+\fancyhead[C]{\small\leftmark}
+\fancyhead[RO]{\hyperref[toc]{\small\thepage}}
+\fancyhead[LE]{\hyperref[toc]{\small\thepage}}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt} % 页眉线宽
+  \renewcommand{\footrulewidth}{0pt} % 页脚线宽
+}
 
 % 文档开端
 \begin{document}
+\pagenumbering{Alph}
+\input{chap/title}
 
-  \frontmatter
-  \maketitle
-  \input{chapter/preface.tex}
+\frontmatter
+\pagenumbering{Roman}
+\input{chap/preface}
+\tableofcontents\label{toc}
 
-  \mainmatter
-  \hypertarget{footlinkcontent}{}
-  \tableofcontents
-  \input{chapter/part.1.基础知识.chapter.1.自然数.tex}
+\mainmatter
+\input{chap/chap.1.自然数}
+\input{chap/chap.2.平面几何}
+\input{chap/chap.3.集合与常用逻辑用语}
+\input{chap/chap.4.一元二次函数、方程与不等式}
+\input{chap/chap.5.函数}
+\input{chap/chap.6.向量与几何}
+\input{chap/chap.7.复数}
+\input{chap/chap.8.直线与圆}
+\input{chap/chap.9.圆锥曲线}
+\input{chap/chap.10.数列与级数}
 
-  \backmatter
-  \input{chapter/epilogue.tex}
-  \input{chapter/reference.tex}
+\backmatter
+\input{chap/answer}
+\input{chap/epilogue}
+\input{chap/reference}
+\printindex
 
 \end{document}
