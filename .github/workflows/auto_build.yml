@@ -16,3 +16,4 @@ jobs:
         with:
           name: PDF
           path: math.pdf
+          args: "-synctex=1 -interaction=nonstopmode -file-line-error"
