@@ -6,18 +6,24 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
-      - name: List root directory files
-        run: ls -al
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+      - name: xelatex main
+        uses: dante-ev/latex-action@latest
         with:
           root_file: math.tex
-          latexmk_use_xelatex: true
-          args: -synctex=1 -interaction=nonstopmode -file-line-error
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v4
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
+      - name: bibtex main
+        uses: dante-ev/latex-action@latest
         with:
-          name: PDF
-          path: math.pdf
-      - name: List root directory files
-        run: ls -al
+          root_file: math.aux
+          compiler: bibtex
+          arg:
+      - name: xelatex main
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: math.tex
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
+      - name: xelatex main
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: math.tex
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
