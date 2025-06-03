@@ -3,9 +3,10 @@
   a4paper, twoside, fontset=none
 ]{ctexbook}
 \usepackage{amsmath, amssymb, amsfonts, array, color, enumitem, extsizes, esint,
-  float, fancyhdr, fontspec, footmisc, geometry,
+  float, fancyhdr, fontspec, footmisc, geometry, relsize,
   graphicx, gbt7714, lastpage, makeidx, mathtools, tikz, xcolor, xeCJK
 }
+
 \usepackage[CJKbookmarks=true]{hyperref}
 \usepackage{cleveref}
 \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
@@ -36,6 +37,10 @@
   ItalicFont     = *,
   BoldItalicFont = *-Bold
 ]
+
+% Reduce code font size
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{{\smaller\oldtexttt{#1}}}
 
 \geometry{a4paper,left=3.67cm,right=2.67cm,top=2.54cm,bottom=2.54cm,head=1.5cm,foot=1.75cm}
 
