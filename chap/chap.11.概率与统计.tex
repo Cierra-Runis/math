@@ -1,0 +1,160 @@
+\chapter{概率与统计}
+
+\section{常见概率分布、期望与方差}
+
+\subsection{常见离散型随机变量的概率分布、期望与方差}
+
+\subsubsection{二项分布}
+
+\begin{itemize}
+  \item 记法：$B(n, p)$
+  \item 意义：记 $X$ 为 $n$ 次实验中出现次数
+  \item 分布：$P(X = k) = C_n^k p^k (1-p)^{n - k}$
+  \item 期望：$np$
+  \item 方差：$np(1 - p)$
+\end{itemize}
+
+\subsubsection{0-1 分布}
+
+\begin{itemize}
+  \item 记法：$B(1, p)$
+  \item 意义：略
+  \item 分布：略
+  \item 期望：略
+  \item 方差：略
+\end{itemize}
+
+\subsubsection{超几何分布}
+
+\begin{itemize}
+  \item 记法：$H(n, M, N)$
+  \item 意义：记 $X$ 为含 $M$ 特殊的总体 $N$ 中取 $n$ 次所取特殊体数
+  \item 分布：$P(X = k) = \dfrac{C_M^k C_{N - M}^{n - k}}{C_N^n}$
+  \item 期望：$\dfrac{nM}{N}$
+  \item 方差：$\dfrac{nM}{N} \left( 1 - \dfrac{M}{N} \right) \dfrac{N - n}{N - 1}$
+\end{itemize}
+
+\subsubsection{负二项分布}
+
+\begin{itemize}
+  \item 记法：$Nb(r, p)$
+  \item 意义：记 $X$ 为事件第 $r$ 次出现时的实验次数
+  \item 分布：$P(X = k) = C_{k - 1}^{r - 1} p^r (1-p)^{k - r}$
+  \item 期望：$\dfrac{r}{p}$
+  \item 方差：$\dfrac{r(1 - p)}{p^2}$
+\end{itemize}
+
+\subsubsection{几何分布}
+
+\begin{itemize}
+  \item 记法：$Nb(1, p)$ 或 $Ge(p)$
+  \item 意义：略
+  \item 分布：略
+  \item 期望：略
+  \item 方差：略
+\end{itemize}
+
+\subsubsection{泊松分布}
+
+\begin{itemize}
+  \item 记法：$P(\lambda)$
+  \item 意义：略
+  \item 分布：$P(X = k) = \dfrac{\lambda^k}{k!} e^{-\lambda}$
+  \item 期望：$\lambda$
+  \item 方差：$\lambda$
+\end{itemize}
+
+
+\subsection{常见连续型随机变量的概率分布、期望与方差}
+
+\begin{table}[H]
+  \small
+  \centering
+  \begin{tabular}{cccccc}
+    \hline
+    名称   & 记法                 & 意义 & 概率密度 $f_X(x)$                                                                       & 期望                   & 方差                      \\
+    \hline
+    均匀分布 & $U[a, b]$          & 略  & $\dfrac{1}{b - a},\ x \in [a, b]$                                                   & $\dfrac{a + b}{2}$   & $\dfrac{(b - a)^2}{12}$ \\
+    正态分布 & $N(\mu, \sigma^2)$ & 略  & $\dfrac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\dfrac{(x - \mu)^2}{2\sigma^2} \right)$ & $\mu$                & $\sigma^2$              \\
+    指数分布 & $Exp(\lambda)$     & 略  & $\lambda e^{-\lambda x},\ x \geqslant 0$                                            & $\dfrac{1}{\lambda}$ & $\dfrac{1}{\lambda^2}$  \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{二维随机变量}
+
+% TODO: 二维随机变量
+
+\section{切比雪夫不等式、大数定律、中心极限定理}
+
+有关大数定律、中心极限定理，参看：
+
+\begin{itemize}
+  \item \href{https://www.bilibili.com/video/av745826370}{一个视频教你快速区分和记住大数定律以及中心极限定理}
+  \item \href{https://www.bilibili.com/video/av612459403}{【官方双语】但是什么是中心极限定理？}
+\end{itemize}
+
+\subsection{切比雪夫不等式}
+
+% TODO:
+
+\subsection{辛钦大数定律与伯努利大数定律}
+
+\subsubsection{辛钦大数定律} \label{subsubsec:khinchin-law-of-large-numbers}
+
+若随机变量 $X_1, \cdots, X_n, \cdots$ 独立同分布，也记作 $\mathrm{i.i.d}$，且它们所遵循的分布的期望为 $\mu$，则有
+\[
+  \dfrac{1}{n} \sum_{i = 1}^n X_i \overset{P}{\longrightarrow} \mu
+\]
+
+我们举个生活中的例子来解释这个式子所表达的意思：
+
+现在有道数学题让你求某个随机变量的期望，你发现这道题好像有问题，想看看答案给出的期望是不是正确的，你正好会使用 Python 进行 $n$ 次模拟实验，那么你自然会将 $n$ 次模拟出来的结果加起来除以 $n$，用算出的频率当作期望.
+
+而辛钦大数定律就是这样做的正确性的根据.
+
+证明如下：
+
+我们将讨论随机变量所遵循的分布的方差 $\sigma^2$ 存在时的特例，因为 \textbf{辛钦大数定律本身不要求此方差存在}.
+
+将 $\dfrac{1}{n} \sum_{i = 1}^n X_i$ 记作随机变量 $Y_n$，易得 $E(Y_n) = \mu$ 且 $D(Y_n) = \dfrac{\sigma^2}{n}$.
+
+由切比雪夫不等式，有
+\[
+  P(|Y_n - \mu| < \varepsilon) \geqslant 1 - \dfrac{\sigma^2}{n\varepsilon^2}
+\]
+
+取极限有
+\[
+  \lim_{n \to +\infty} P(|Y_n - \mu| < \varepsilon) = 1
+\]
+故得证.
+
+\subsubsection{伯努利大数定律}
+
+若随机变量 $X_n \sim B(n, p),\ n \in \mathbb{N}^*$，则有
+\[
+  \dfrac{X_n}{n} \overset{P}{\longrightarrow} p
+\]
+
+据说伯努利大数定律就是辛钦大数定律的一个特例，但很多书都没有具体的推导过程.
+
+这里参考
+\href{https://www.bilibili.com/video/av745161573}{【概率论】大数定律与中心极限定理（2）从辛钦大数定律到伯努利大数定律}
+给出证明：
+
+假定随机变量 $x_1, \cdots, x_n, \cdots$ 独立同分布，遵循两点分布 $B(1, p)$，这也被称为伯努利试验，其期望为 $p$.
+
+那么随机变量 $X_n \sim B(n, p)$ 实际上就是在考查这 $n$ 次实验中成功的次数，显然有
+\[
+  X_n = \sum_{i = 1}^{n} x_i
+\]
+
+可以注意到本节中的 $X_n$ 对应 \ref{subsubsec:khinchin-law-of-large-numbers} 一节中的 $Y_n$，$x_i$ 对应 $X_i$，故
+\[
+  \dfrac{X_n}{n} = \dfrac{1}{n} \sum_{i = 1}^n x_i \overset{P}{\longrightarrow} p
+\]
+
+\subsection{中心极限定理}
+
+% TODO:

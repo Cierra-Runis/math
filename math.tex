@@ -23,19 +23,36 @@
 \makeindex
 \graphicspath{{figures/}}
 
+% https://tex.stackexchange.com/questions/735500/problem-with-amsmath-cleveref-acronym
+\makeatletter
+\AtBeginDocument
+{
+  \def\ltx@label#1{\cref@label{#1}}%add braces
+  \def\label@in@display@noarg#1{\cref@old@label@in@display{#1}}%remove braces
+\def\label@in@mmeasure@noarg#1{%
+    \begingroup%
+      \measuring@false%
+      \cref@old@label@in@display{#1}%remove braces for multline, see https://tex.stackexchange.com/q/737204/2388
+    \endgroup}%
+} %
+\makeatother
+
 %%% Fonts
-% Code
 \setmonofont{CascadiaCode}[
   Path           = ./fonts/CascadiaCode/,
-  Extension      = .ttf
+  Extension      = .ttf,
 ]
-% Chinese
 \setCJKmainfont{SourceHanSerif}[
   Path           = ./fonts/SourceHanSerif/,
-  Extension      = .otf,
   BoldFont       = *-Bold,
-  ItalicFont     = *,
-  BoldItalicFont = *-Bold
+  ItalicFont     = JiangChengXieSong-400W,
+  BoldItalicFont = JiangChengXieSong-700W,
+]
+\setCJKmonofont{MapleMono}[
+  Path           = ./fonts/MapleMono/,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
 ]
 
 % Reduce code font size
@@ -82,7 +99,8 @@
 }
 {
   \theoremstyle{nonumberplain}
-  \theoremsymbol{Q.E.D.}  % 在证明环境末尾加上一个证毕符号
+  \theoremseparator{\quad}
+  \theoremsymbol{\ensuremath{\square}}       % 在证明环境末尾加上一个证毕符号
   \newtheorem{proof}{证}           % 证明环境
 }
 
@@ -146,6 +164,7 @@
 \input{chap/chap.8.直线与圆}
 \input{chap/chap.9.圆锥曲线}
 \input{chap/chap.10.数列与级数}
+\input{chap/chap.11.概率与统计}
 
 \backmatter
 \input{chap/answer}
